@@ -14,6 +14,8 @@ struct ContentView: View {
     
     var body: some View {
         ScrollView {
+            
+            //fetches data from a viewModel
             VStack {
                 Text(viewModel.title)
                     .font(.title)
@@ -27,6 +29,7 @@ struct ContentView: View {
         }
         .navigationTitle("Whether the weather be fine")
         .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.large)
+        //not sure why it's not working
         
     }
 }
