@@ -7,11 +7,11 @@
 
 import Foundation
 
-// Data needed by view
+// Data needed by view, when it updates, view updates as well
 
 class WeatherViewModel: ObservableObject {
-    @Published var title: String
-    @Published var temp: String
-    @Published var description: String
-    @Published var timeZone: String
+    @Published var title: String = "Where am I?"
+    @Published var temp: String = "Is it cold?"
+    @Published var description: String = "Or do I feel cold?"
+    @Published var timeZone: String = "What time is it?"
 }

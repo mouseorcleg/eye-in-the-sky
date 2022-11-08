@@ -8,16 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    // updates when viewModel data is updated
     @StateObject var viewModel = WeatherViewModel()
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world! Let's check the weather")
+        ScrollView {
+            VStack {
+                Text(viewModel.title)
+                    .font(.title)
+                Text(viewModel.temp)
+                    .font(.largeTitle)
+                Text(viewModel.description)
+                    .font(.title2)
+                Text(viewModel.timeZone)
+            }
+            .padding(40)
         }
-        .padding()
+        .navigationTitle("Whether the weather be fine")
+        .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.large)
+        
     }
 }
 
