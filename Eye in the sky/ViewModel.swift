@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+// Data needed by view
+
+class WeatherViewModel: ObservableObject {
+    @Published var title: String
+    @Published var temp: String
+    @Published var description: String
+    @Published var timeZone: String
+}
