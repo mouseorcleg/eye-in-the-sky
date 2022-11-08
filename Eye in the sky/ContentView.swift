@@ -30,7 +30,6 @@ struct ContentView: View {
         .navigationTitle("Whether the weather be fine")
         .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.large)
         //not sure why it's not working
-        
     }
 }
 
