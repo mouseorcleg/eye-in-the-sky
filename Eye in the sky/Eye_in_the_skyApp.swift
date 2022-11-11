@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct Eye_in_the_skyApp: App {
     var body: some Scene {
-        WindowGroup {
+        WindowGroup<ContentView> {
             ContentView()
         }
     }
