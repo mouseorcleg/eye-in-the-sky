@@ -41,7 +41,7 @@ class WeatherViewModel: ObservableObject {
                     self.title = model.name
                     self.description = model.weather.first?.main ?? "No description"
                     self.temp = "\(model.main.temp)°C"
-                    self.humidity = "Humidity: \(model.main.humidity)"
+                    self.humidity = "Humidity: \(model.main.humidity)%"
                 }
                 
             }
