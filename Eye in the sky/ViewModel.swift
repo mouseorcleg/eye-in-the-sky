@@ -25,8 +25,10 @@ class WeatherViewModel: ObservableObject {
             return
         }
         
-        let task = URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data, error == nil else {
+        let task = URLSession.shared.dataTask(with: url) {
+            data, _, error in
+            guard let data = data, error == nil
+            else {
                 print("Couldn't get data from URL")
                 return
             }
@@ -38,7 +40,7 @@ class WeatherViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     self.title = model.name
                     self.timeZone = "\(model.timezone)"
-                    self.description = model.weather.description
+                    self.description = model.weather.first?.description ?? "No bueno"
                     self.temp = "\(model.main.temp)°"
                 }
                 

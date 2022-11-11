@@ -12,7 +12,7 @@ import Foundation
 struct WeatherDataModel: Codable {
     let timezone: Float
     let name: String
-    let weather: CurrentWeather
+    let weather: [CurrentWeather]
     let main: MainDetails
 }
 
