@@ -25,6 +25,7 @@ struct ContentView: View {
                     Text(viewModel.description)
                         .font(.title2)
                     Text(viewModel.humidity)
+                    Text(viewModel.wind)
                 }
                 .padding(40)
             }

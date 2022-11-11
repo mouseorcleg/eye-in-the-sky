@@ -14,6 +14,7 @@ struct WeatherDataModel: Codable {
     let name: String
     let weather: [CurrentWeather]
     let main: MainDetails
+    let wind: Windy
 }
 
 struct CurrentWeather: Codable {
@@ -23,4 +24,8 @@ struct CurrentWeather: Codable {
 struct MainDetails: Codable {
     let temp: Float
     let humidity: Int
+}
+
+struct Windy: Codable {
+    let speed: Float
 }

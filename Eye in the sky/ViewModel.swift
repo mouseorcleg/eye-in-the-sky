@@ -14,6 +14,7 @@ class WeatherViewModel: ObservableObject {
     @Published var temp: String = "Is it cold?"
     @Published var description: String = "Or do I feel cold?"
     @Published var humidity: String = "Am I curly?"
+    @Published var wind: String = "Is it windy?"
     
     init() {
         fetchWeather()
@@ -42,6 +43,7 @@ class WeatherViewModel: ObservableObject {
                     self.description = model.weather.first?.main ?? "No description"
                     self.temp = "\(model.main.temp)°C"
                     self.humidity = "Humidity: \(model.main.humidity)%"
+                    self.wind = "Wind: \(model.wind.speed) m/s"
                 }
                 
             }
