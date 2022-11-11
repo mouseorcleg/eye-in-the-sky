@@ -14,6 +14,8 @@ There will be a simple weather app that fetches data about the weather in the eu
 
 ## Sources & inspirations
 
+App icon: [Lord of the Rings icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/lord-of-the-rings)
+
 API: [OpenWeather](https://openweathermap.org/api)
 
 Weather app tutorial: [iOS Academy, SwiftUI MVVM Pattern](https://www.youtube.com/watch?v=ak8x-p-q8tU)
