@@ -20,7 +20,7 @@ class WeatherViewModel: ObservableObject {
     }
     
     func fetchWeather() {
-        guard let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=51.51&lon=-0.13&appid=cc5f0b417551c77d68956a6336441d72") else {
+        guard let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=51.51&lon=-0.13&appid=cc5f0b417551c77d68956a6336441d72&units=metric") else {
             print("Failed to create a URL")
             return
         }
@@ -29,6 +29,22 @@ class WeatherViewModel: ObservableObject {
             guard let data = data, error == nil else {
                 print("Couldn't get data from URL")
                 return
+            }
+        
+            // Convert data to model
+            
+            do {
+                let model = try JSONDecoder().decode(WeatherDataModel.self, from: data)
+                DispatchQueue.main.async {
+                    self.title = model.name
+                    self.timeZone = "\(model.timezone)"
+                    self.description = model.weather.description
+                    self.temp = "\(model.main.temp)°"
+                }
+                
+            }
+            catch {
+                print("failed to decode JSON data")
             }
             
         }
