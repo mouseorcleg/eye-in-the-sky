@@ -40,7 +40,7 @@ class WeatherViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     self.title = model.name
                     self.timeZone = "\(model.timezone)"
-                    self.description = model.weather.first?.description ?? "No bueno"
+                    self.description = model.weather.first?.description ?? "No description"
                     self.temp = "\(model.main.temp)°"
                 }
                 
