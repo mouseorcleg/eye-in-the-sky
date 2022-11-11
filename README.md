@@ -10,7 +10,7 @@ There will be a simple weather app that fetches data about the weather in the eu
 
 ## How it looks right now
 
-<img width="424" alt="Screenshot 2022-11-11 at 14 50 46" src="https://user-images.githubusercontent.com/45575272/201370972-984dccea-b85d-4bba-b856-952dd8fe6bef.png">
+<img width="293" alt="Screenshot 2022-11-11 at 17 14 40" src="https://user-images.githubusercontent.com/45575272/201394261-40f6bc33-ab2b-454b-9d8c-0bdd9ea9b27b.png">
 
 ## Sources & inspirations
 
