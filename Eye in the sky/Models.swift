@@ -10,16 +10,17 @@ import Foundation
 // Data
 
 struct WeatherDataModel: Codable {
-    let timezone: Float
+    let timezone: Int
     let name: String
     let weather: [CurrentWeather]
     let main: MainDetails
 }
 
 struct CurrentWeather: Codable {
-    let description: String
+    let main: String
 }
 
 struct MainDetails: Codable {
     let temp: Float
+    let humidity: Int
 }

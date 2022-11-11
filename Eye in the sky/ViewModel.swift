@@ -13,7 +13,7 @@ class WeatherViewModel: ObservableObject {
     @Published var title: String = "Where am I?"
     @Published var temp: String = "Is it cold?"
     @Published var description: String = "Or do I feel cold?"
-    @Published var timeZone: String = "What time is it?"
+    @Published var humidity: String = "Am I curly?"
     
     init() {
         fetchWeather()
@@ -39,9 +39,9 @@ class WeatherViewModel: ObservableObject {
                 let model = try JSONDecoder().decode(WeatherDataModel.self, from: data)
                 DispatchQueue.main.async {
                     self.title = model.name
-                    self.timeZone = "\(model.timezone)"
-                    self.description = model.weather.first?.description ?? "No description"
-                    self.temp = "\(model.main.temp)°"
+                    self.description = model.weather.first?.main ?? "No description"
+                    self.temp = "\(model.main.temp)°C"
+                    self.humidity = "Humidity: \(model.main.humidity)"
                 }
                 
             }
