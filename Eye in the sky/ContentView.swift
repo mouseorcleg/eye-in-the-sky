@@ -13,23 +13,24 @@ struct ContentView: View {
     @StateObject var viewModel = WeatherViewModel()
     
     var body: some View {
-        ScrollView {
-            
-            //fetches data from a viewModel
-            VStack {
-                Text(viewModel.title)
-                    .font(.title)
-                Text(viewModel.temp)
-                    .font(.largeTitle)
-                Text(viewModel.description)
-                    .font(.title2)
-                Text(viewModel.timeZone)
+        NavigationView {
+            ScrollView {
+                
+                //fetches data from a viewModel
+                VStack {
+                    Text(viewModel.title)
+                        .font(.title)
+                    Text(viewModel.temp)
+                        .font(.largeTitle)
+                    Text(viewModel.description)
+                        .font(.title2)
+                    Text(viewModel.timeZone)
+                }
+                .padding(40)
             }
-            .padding(40)
+            .navigationTitle("Whether the weather")
+            .navigationBarTitleDisplayMode(.automatic)
         }
-        .navigationTitle("Whether the weather be fine")
-        .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.large)
-        //not sure why it's not working
     }
 }
 
