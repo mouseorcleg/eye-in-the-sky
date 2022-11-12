@@ -15,9 +15,10 @@ struct WeatherListView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                
-                //fetches data from a viewModel
-                
+
+                List(0..<10) { item in
+                    CellListView()
+                }
                 
             }
             .navigationTitle("Whether the weather")
