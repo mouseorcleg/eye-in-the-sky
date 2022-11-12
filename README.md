@@ -20,6 +20,10 @@ API: [OpenWeather](https://openweathermap.org/api)
 
 Weather app tutorial: [iOS Academy, SwiftUI MVVM Pattern](https://www.youtube.com/watch?v=ak8x-p-q8tU)
 
+Views: [SwiftUI List from Sean Allen](https://www.youtube.com/watch?v=k5rupivxnMA&t=11s)
+
+Data Layer: [3 Data Layer - Networking by Aaqib Hussain](https://www.kodeco.com/books/real-world-ios-by-tutorials/v1.0/chapters/3-data-layer-networking)
+
 Debug sessions: our deepest gratitude to Stackoverflow :)
 
 To be continued.
