@@ -13,6 +13,7 @@
 		CB3C40D1291AA5BE00098594 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB3C40D0291AA5BE00098594 /* Preview Assets.xcassets */; };
 		CB534770291AC1420009EDB9 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB53476F291AC1420009EDB9 /* Models.swift */; };
 		CB534772291AC1680009EDB9 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB534771291AC1680009EDB9 /* ViewModel.swift */; };
+		CB534776291FFC0A0009EDB9 /* CellListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB534775291FFC0A0009EDB9 /* CellListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		CB3C40D0291AA5BE00098594 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CB53476F291AC1420009EDB9 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		CB534771291AC1680009EDB9 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		CB534775291FFC0A0009EDB9 /* CellListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			children = (
 				CB3C40C9291AA5B800098594 /* Eye_in_the_skyApp.swift */,
 				CB3C40CB291AA5B900098594 /* WeatherListView.swift */,
+				CB534775291FFC0A0009EDB9 /* CellListView.swift */,
 				CB534771291AC1680009EDB9 /* ViewModel.swift */,
 				CB53476F291AC1420009EDB9 /* Models.swift */,
 				CB3C40CD291AA5BE00098594 /* Assets.xcassets */,
@@ -145,6 +148,7 @@
 			files = (
 				CB534770291AC1420009EDB9 /* Models.swift in Sources */,
 				CB3C40CC291AA5B900098594 /* WeatherListView.swift in Sources */,
+				CB534776291FFC0A0009EDB9 /* CellListView.swift in Sources */,
 				CB534772291AC1680009EDB9 /* ViewModel.swift in Sources */,
 				CB3C40CA291AA5B800098594 /* Eye_in_the_skyApp.swift in Sources */,
 			);
