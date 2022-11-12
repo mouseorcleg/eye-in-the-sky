@@ -36,7 +36,7 @@ struct CellListView: View {
                 Text(viewModel.wind)
                     .fontDesign(.monospaced)
             }
-            .padding(40)
+            .padding(14)
         }
         
     }

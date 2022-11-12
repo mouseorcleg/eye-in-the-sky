@@ -14,13 +14,11 @@ struct WeatherListView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
 
                 List(0..<10) { item in
                     CellListView()
                 }
                 
-            }
             .navigationTitle("Whether the weather")
             .navigationBarTitleDisplayMode(.automatic)
         }
