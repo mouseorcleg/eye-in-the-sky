@@ -1,31 +1,23 @@
 //
-//  ViewModel.swift
+//  WeatherService.swift
 //  Eye in the sky
 //
-//  Created by Maria Kharybina on 08/11/2022.
+//  Created by Maria Kharybina on 13/11/2022.
 //
 
 import Foundation
 
-// Data needed by view, when it updates, view updates as well
-
-class WeatherViewModel: ObservableObject {
-    @Published var title: String = "Where am I?"
-    @Published var temp: String = "Is it cold?"
-    @Published var description: String = "Or do I feel cold?"
-    @Published var humidity: String = "Am I curly?"
-    @Published var wind: String = "Is it windy?"
-    @Published var icon: String = ""
+class WeatherService {
     
-    init() {
-        fetchWeather()
+    private func generateURL(city: String) -> URL {
+        return URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=51.51&lon=-0.13&appid=cc5f0b417551c77d68956a6336441d72&units=metric") else {
+            print("Failed to create a URL")
+        }
     }
     
-    func fetchWeather() {
-        guard let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=51.51&lon=-0.13&appid=cc5f0b417551c77d68956a6336441d72&units=metric") else {
-            print("Failed to create a URL")
-            return
-        }
+    func fetchWeather(city: String) -> Result<WeatherDataModel, Error>? {
+        
+        let url = generateURL(city)
         
         let task = URLSession.shared.dataTask(with: url) {
             data, _, error in
@@ -55,5 +47,8 @@ class WeatherViewModel: ObservableObject {
             
         }
         task.resume()
+        
+        return nil
     }
+    
 }

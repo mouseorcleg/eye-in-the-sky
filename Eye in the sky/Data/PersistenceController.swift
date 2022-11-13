@@ -1,6 +1,7 @@
 //
 //  PersistenceController.swift
 //  Eye in the sky
+//  Credit where credit is due: https://www.hackingwithswift.com/quick-start/swiftui/how-to-configure-core-data-to-work-with-swiftui
 //
 //  Created by Maria Kharybina on 12/11/2022.
 //
@@ -19,7 +20,7 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let controller = PersistenceController(inMemory: true)
 
-        // Create 10 example programming languages.
+        // Create 10 example weathers.
         for _ in 0..<10 {
             let wetherTheWeather = WeatherData(context: controller.container.viewContext)
             wetherTheWeather.title = "London"
