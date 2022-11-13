@@ -7,17 +7,26 @@
 
 import Foundation
 
+class WeatherError: Error {
+    let message: String
+    init(msg: String) {
+        self.message = msg
+    }
+}
+
 class WeatherService {
+    private let key = "cc5f0b417551c77d68956a6336441d72"
+    private let endpoint = "https://api.openweathermap.org/data/2.5/weather"
     
-    private func generateURL(city: String) -> URL {
-        return URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=51.51&lon=-0.13&appid=cc5f0b417551c77d68956a6336441d72&units=metric") else {
-            print("Failed to create a URL")
-        }
+    private func generateURL(city: String) -> URL? {
+        return URL(string: "\(endpoint)?q=\(city)&appid=\(key)")
     }
     
-    func fetchWeather(city: String) -> Result<WeatherDataModel, Error>? {
+    func fetchWeather(city: String) -> Result<WeatherDataModel, WeatherError>? {
         
-        let url = generateURL(city)
+        guard let url = generateURL(city: city) else {
+            return .failure(WeatherError(msg: "Failed to create url"))
+        }
         
         let task = URLSession.shared.dataTask(with: url) {
             data, _, error in
