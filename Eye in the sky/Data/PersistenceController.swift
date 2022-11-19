@@ -14,17 +14,22 @@ struct PersistenceController {
     static let shared = PersistenceController()
 
     // Storage for Core Data
-    let container: NSPersistentContainer
+    var container = NSPersistentContainer(name: "LocalWeatherData")
 
     // A test configuration for SwiftUI previews
     static var preview: PersistenceController = {
         let controller = PersistenceController(inMemory: true)
 
-        // Create 10 example weathers.
-        for _ in 0..<10 {
-            let wetherTheWeather = WeatherData(context: controller.container.viewContext)
-            wetherTheWeather.title = "London"
-            wetherTheWeather.temp = "+ 14"
+        for _ in 0..<2 {
+            let weatherExample = WeatherCoreData(context: controller.container.viewContext)
+            
+                weatherExample.name = "London"
+                weatherExample.temp = 14.0
+                weatherExample.timezone = 1
+                weatherExample.main = "Not a bad wether"
+                weatherExample.icon = " "
+                weatherExample.humidity = 2
+                weatherExample.speed = 3
         }
 
         return controller

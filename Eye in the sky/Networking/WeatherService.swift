@@ -41,12 +41,17 @@ class WeatherService {
             do {
                 let model = try JSONDecoder().decode(WeatherDataModel.self, from: data)
                 DispatchQueue.main.async {
-                    self.title = model.name
-                    self.description = model.weather.first?.main ?? "No description"
-                    self.temp = "\(model.main.temp)°C"
-                    self.humidity = "Humidity: \(model.main.humidity)%"
-                    self.wind = "Wind: \(model.wind.speed) m/s"
-                    self.icon = model.weather.first?.icon ?? "01d"
+                    
+                    //This stuff is from ViewModel and should be changed
+                    //How do we ask it to decode and then save it to core data?
+                    //And how do we pass Wheather data model here? Or we do not?
+                    
+//                    self.name = model.name
+//                    self.description = model.weather.first?.main ?? "No description"
+//                    self.temp = "\(model.main.temp)°C"
+//                    self.humidity = "Humidity: \(model.main.humidity)%"
+//                    self.wind = "Wind: \(model.wind.speed) m/s"
+//                    self.icon = model.weather.first?.icon ?? "01d"
                 }
                 
             }
