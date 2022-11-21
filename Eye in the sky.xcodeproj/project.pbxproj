@@ -17,6 +17,7 @@
 		CBAB77372920121F0007C597 /* LocalWeatherData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CBAB77352920121F0007C597 /* LocalWeatherData.xcdatamodeld */; };
 		CBAB7739292015640007C597 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAB7738292015640007C597 /* PersistenceController.swift */; };
 		CBAB777929210A130007C597 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAB777829210A120007C597 /* WeatherService.swift */; };
+		CBDB454F292B9A39009492DA /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB454E292B9A39009492DA /* ListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		CBAB77362920121F0007C597 /* LocalWeatherData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalWeatherData.xcdatamodel; sourceTree = "<group>"; };
 		CBAB7738292015640007C597 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		CBAB777829210A120007C597 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		CBDB454E292B9A39009492DA /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				CB534775291FFC0A0009EDB9 /* CellListView.swift */,
 				CB3C40CB291AA5B900098594 /* WeatherListView.swift */,
 				CB534771291AC1680009EDB9 /* ViewModel.swift */,
+				CBDB454E292B9A39009492DA /* ListViewModel.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 				CBAB7739292015640007C597 /* PersistenceController.swift in Sources */,
 				CB534770291AC1420009EDB9 /* Models.swift in Sources */,
 				CB3C40CC291AA5B900098594 /* WeatherListView.swift in Sources */,
+				CBDB454F292B9A39009492DA /* ListViewModel.swift in Sources */,
 				CB534776291FFC0A0009EDB9 /* CellListView.swift in Sources */,
 				CB534772291AC1680009EDB9 /* ViewModel.swift in Sources */,
 				CB3C40CA291AA5B800098594 /* Eye_in_the_skyApp.swift in Sources */,
