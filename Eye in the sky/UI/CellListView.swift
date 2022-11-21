@@ -16,10 +16,10 @@ struct CellListView: View {
     
     init(city: String) {
         self.city = city
-        self._viewModel = StateObject(wrappedValue: WeatherViewModel(city: city))
+        self._viewModel = StateObject(wrappedValue: WeatherViewModel(city: city, repo: WeatherRepo.self as! WeatherRepo))
     }
     
-    
+    // smth really strange going on with repos here
     
     var body: some View {
         
