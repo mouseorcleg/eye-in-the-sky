@@ -8,7 +8,7 @@
 import Foundation
 
 class ListViewModel: ObservableObject {
-    // city list - 10 items as fiel
-    let cityList: Array<String> = []
+    // city list - 10 items as field
+    let cityList: Array<String> = ["Amsterdam", "Athens", "Bern", "Cophenhagen", "Dublin", "Helsinki", "Lisbon", "London", "Rome", "Vienna"]
     
 }
