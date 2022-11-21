@@ -20,11 +20,13 @@ struct ContentView: View {
                 VStack {
                     Text(viewModel.title)
                         .font(.title)
+                    AsyncImage(url: URL(string: "https://openweathermap.org/img/wn/\(viewModel.icon).png"), scale: 0.5)
                     Text(viewModel.temp)
                         .font(.largeTitle)
                     Text(viewModel.description)
                         .font(.title2)
-                    Text(viewModel.timeZone)
+                    Text(viewModel.humidity)
+                    Text(viewModel.wind)
                 }
                 .padding(40)
             }
