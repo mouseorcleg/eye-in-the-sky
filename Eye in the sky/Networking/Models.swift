@@ -7,7 +7,7 @@
 
 import Foundation
 
-// Data
+// Data layer model - use for networking + mb Core Data
 
 struct WeatherDataModel: Codable {
     let timezone: Int
