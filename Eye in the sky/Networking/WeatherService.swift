@@ -22,47 +22,32 @@ class WeatherService {
         return URL(string: "\(endpoint)?q=\(city)&appid=\(key)")
     }
     
-    func fetchWeather(city: String) -> Result<WeatherDataModel, WeatherError>? {
-        
+    func fetchWeather(city: String, completion: @escaping (Result<WeatherDataModel, WeatherError>) -> Void) {
         guard let url = generateURL(city: city) else {
-            return .failure(WeatherError(msg: "Failed to create url"))
+            return completion(.failure(WeatherError(msg: "Failed to create url")))
         }
         
         let task = URLSession.shared.dataTask(with: url) {
             data, _, error in
             guard let data = data, error == nil
             else {
-                print("Couldn't get data from URL")
-                return
+                return completion(.failure(WeatherError(msg: "Couldn't get data from URL")))
             }
-        
+            
             // Convert data to model
             
             do {
                 let model = try JSONDecoder().decode(WeatherDataModel.self, from: data)
-                DispatchQueue.main.async {
-                    
-                    //This stuff is from ViewModel and should be changed
-                    //How do we ask it to decode and then save it to core data?
-                    //And how do we pass Wheather data model here? Or we do not?
-                    
-//                    self.name = model.name
-//                    self.description = model.weather.first?.main ?? "No description"
-//                    self.temp = "\(model.main.temp)°C"
-//                    self.humidity = "Humidity: \(model.main.humidity)%"
-//                    self.wind = "Wind: \(model.wind.speed) m/s"
-//                    self.icon = model.weather.first?.icon ?? "01d"
-                }
-                
+                return completion(.success(model))
             }
             catch {
-                print("failed to decode JSON data")
+                return completion(.failure(WeatherError(msg: "failed to decode JSON data")))
             }
             
         }
         task.resume()
         
-        return nil
+        return
     }
     
 }
