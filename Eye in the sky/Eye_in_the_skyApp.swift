@@ -9,6 +9,9 @@ import SwiftUI
 
 @main
 struct Eye_in_the_skyApp: App {
+    
+    let persistenceController = PersistenceController.shared
+    
     var body: some Scene {
         WindowGroup<WeatherListView> {
             WeatherListView()
