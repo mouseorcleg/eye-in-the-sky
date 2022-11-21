@@ -19,13 +19,36 @@ class WeatherViewModel: ObservableObject {
     //add stale: Bool
     //if stale show in gray
     
-    init(city: String) {
+    private let city: String
+    private let repo: WeatherRepo
+    
+    init(city: String, repo: WeatherRepo) {
+        self.city = city
+        self.repo = repo
         fetchWeatherUI()
     }
     
-    func fetchWeatherUI() {
+    private func fetchWeatherUI() {
+        let superCity = self.city
+        let repo2 = repo
+        DispatchQueue.main.async {
+            repo2.fetchWeather(city: superCity) { result in
+                switch result {
+                case .success(let model):
+                    self.title = model.title
+                    
+                case .failure(let error):
+                    print("hehe")
+                }
+            
+            }
+        }
+        
+        
         //there will 2 options:
         //1) success that can be fresh or stale
         //2) error that will show city name and all other fields in darker gray
+        
+    
     }
 }

@@ -30,3 +30,23 @@ struct MainDetails: Codable {
 struct Windy: Codable {
     let speed: Float
 }
+
+// works for ViewModel
+
+struct WeatherUIModel {
+    let title: String
+    let temp: String
+    let description: String
+    let humidity: String
+    let wind: String
+    let icon: String
+    
+    static func createUiModel(title: String = "Where am I?", temp: String = "Is it cold?", description: String = "Or do I feel cold?", humidity: String = "Am I curly?", wind: String = "Is it windy?", icon: String = "") -> WeatherUIModel {
+        return WeatherUIModel(title: title,
+                              temp: temp,
+                              description: description,
+                              humidity: humidity,
+                              wind: wind,
+                              icon: icon)
+    }
+}

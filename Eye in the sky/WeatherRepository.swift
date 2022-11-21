@@ -8,7 +8,7 @@
 import Foundation
 
 protocol WeatherRepo {
-    func fetchWeather(city: String, completion: @escaping (Result<WeatherViewModel, WeatherError>) -> Void)
+    func fetchWeather(city: String, completion: @escaping (Result<WeatherUIModel, WeatherError>) -> Void)
 }
 
 class WeatherRepository: WeatherRepo {
@@ -20,15 +20,19 @@ class WeatherRepository: WeatherRepo {
         self.persistanceController = persistanceController
     }
     
-    func fetchWeather(city: String, completion: @escaping (Result<WeatherViewModel, WeatherError>) -> Void) {
+    func fetchWeather(city: String, completion: @escaping (Result<WeatherUIModel, WeatherError>) -> Void) {
         weatherService.fetchWeather(city: city) { result in
             switch (result) {
             case .success(let model):
-                print ("haha")
+                let uiModel = WeatherUIModel.createUiModel(
+                    title: model.name,
+                    temp: "\(model.main.temp)°",
+                    description: model.weather.first?.main ?? "No description"
+                )
+                
                 //save to coredata; if there is an entry, rewrite it
-                let viewModel = WeatherViewModel(city: city)//(from model)
-                //model translate to weatherviewmodel
-//                completion(model)
+                
+                completion(.success(uiModel))
             case .failure(let error):
                 print("hehe")
                 //if there is an entry in coredata with the same city name, return it

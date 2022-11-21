@@ -54,6 +54,6 @@ struct CellListView: View {
 
 struct CellListView_Previews: PreviewProvider {
     static var previews: some View {
-        CellListView(city: "London")
+        CellListView(city: "Berlin")
     }
 }
