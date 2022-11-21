@@ -16,12 +16,16 @@ class WeatherViewModel: ObservableObject {
     @Published var humidity: String = "Am I curly?"
     @Published var wind: String = "Is it windy?"
     @Published var icon: String = ""
+    //add stale: Bool
+    //if stale show in gray
     
-    init() {
+    init(city: String) {
         fetchWeatherUI()
     }
     
     func fetchWeatherUI() {
-        
+        //there will 2 options:
+        //1) success that can be fresh or stale
+        //2) error that will show city name and all other fields in darker gray
     }
 }

@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct CellListView: View {
-    
+    var city: String
     // updates when viewModel data is updated
-    @StateObject var viewModel = WeatherViewModel()
+    @StateObject var viewModel = WeatherViewModel(city: city)
     
     var body: some View {
         
@@ -40,10 +40,14 @@ struct CellListView: View {
         }
         
     }
+    
+    init(city: String) {
+        self.city = city
+    }
 }
 
 struct CellListView_Previews: PreviewProvider {
     static var previews: some View {
-        CellListView()
+        CellListView(city: "London")
     }
 }
