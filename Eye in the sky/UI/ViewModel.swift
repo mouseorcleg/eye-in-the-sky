@@ -36,6 +36,11 @@ class WeatherViewModel: ObservableObject {
                 switch result {
                 case .success(let model):
                     self.title = model.title
+                    self.temp = model.temp
+                    self.description = model.description
+                    self.humidity = model.humidity
+                    self.wind = model.wind
+                    self.icon = model.icon
                     
                 case .failure(let error):
                     print("hehe")
