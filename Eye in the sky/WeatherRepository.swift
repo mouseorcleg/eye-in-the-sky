@@ -26,8 +26,11 @@ class WeatherRepository: WeatherRepo {
             case .success(let model):
                 let uiModel = WeatherUIModel.createUiModel(
                     title: model.name,
-                    temp: "\(model.main.temp)°",
-                    description: model.weather.first?.main ?? "No description"
+                    temp: "\(model.main.temp)°C",
+                    description: model.weather.first?.main ?? "No description",
+                    humidity: "Humidity: \(model.main.humidity)%",
+                    wind: "Wind: \(model.wind.speed) m/s",
+                    icon: model.weather.first?.icon ?? "-"
                 )
                 
                 //save to coredata; if there is an entry, rewrite it

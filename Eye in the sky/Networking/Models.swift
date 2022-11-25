@@ -41,7 +41,7 @@ struct WeatherUIModel {
     let wind: String
     let icon: String
     
-    static func createUiModel(title: String = "Where am I?", temp: String = "Is it cold?", description: String = "Or do I feel cold?", humidity: String = "Am I curly?", wind: String = "Is it windy?", icon: String = "") -> WeatherUIModel {
+    static func createUiModel(title: String = "-", temp: String = "-", description: String = "-", humidity: String = "-", wind: String = "-", icon: String = "") -> WeatherUIModel {
         return WeatherUIModel(title: title,
                               temp: temp,
                               description: description,
