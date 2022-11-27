@@ -8,7 +8,7 @@
 import Foundation
 
 protocol WeatherRepo {
-    func fetchWeather(city: String, completion: @escaping (Result<WeatherUIModel, WeatherError>) -> Void)
+    func fetchWeatherFromRepo(city: String, completion: @escaping (Result<WeatherUIModel, WeatherError>) -> Void)
 }
 
 class WeatherRepository: WeatherRepo {
@@ -20,8 +20,8 @@ class WeatherRepository: WeatherRepo {
         self.persistanceController = persistanceController
     }
     
-    func fetchWeather(city: String, completion: @escaping (Result<WeatherUIModel, WeatherError>) -> Void) {
-        weatherService.fetchWeather(city: city) { result in
+    func fetchWeatherFromRepo(city: String, completion: @escaping (Result<WeatherUIModel, WeatherError>) -> Void) {
+        weatherService.updateWeather(city: city) { result in
             switch (result) {
             case .success(let model):
                 let uiModel = WeatherUIModel.createUiModel(

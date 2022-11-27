@@ -14,9 +14,10 @@ struct CellListView: View {
     
     var city: String
     
-    init(city: String) {
+    init(city: String, repo: WeatherRepo) {
         self.city = city
-        self._viewModel = StateObject(wrappedValue: WeatherViewModel(city: city, repo: WeatherRepo.self as! WeatherRepo))
+        self._viewModel = StateObject(wrappedValue: WeatherViewModel(city: city, repo: repo))
+
     }
     
     // smth really strange going on with repos here
@@ -54,6 +55,6 @@ struct CellListView: View {
 
 struct CellListView_Previews: PreviewProvider {
     static var previews: some View {
-        CellListView(city: "Berlin")
+        CellListView(city: "Berlin", repo: WeatherRepository.self as! WeatherRepo)
     }
 }

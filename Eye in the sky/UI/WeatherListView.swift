@@ -12,16 +12,13 @@ struct WeatherListView: View {
     // updates when viewModel data is updated
     @StateObject var viewModel = ListViewModel()
     
-    let repo: WeatherRepo?
+    let repo: WeatherRepository?
     
     var body: some View {
         NavigationView {
-            
-            //Check how to create a list correctly
-            
-            //            for city in viewModel.cityList {
-            //                let cell = CellListView(city: city)
-            //
+            List(0..<10) { item in
+                CellListView(city: viewModel.cityList.randomElement() ?? "London", repo: repo!)
+                           }
         }
         
         .navigationTitle("Whether the weather")
