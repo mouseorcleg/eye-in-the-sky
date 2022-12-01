@@ -14,7 +14,7 @@ struct CellListView: View {
     
     var city: String
     
-    init(city: String, repo: WeatherRepo) {
+    init(city: String, repo: WeatherRepository) {
         self.city = city
         self._viewModel = StateObject(wrappedValue: WeatherViewModel(city: city, repo: repo))
 
@@ -55,6 +55,6 @@ struct CellListView: View {
 
 struct CellListView_Previews: PreviewProvider {
     static var previews: some View {
-        CellListView(city: "Berlin", repo: WeatherRepository.self as! WeatherRepo)
+        CellListView(city: "Berlin", repo: WeatherRepository(weatherService: WeatherService(), persistanceController: PersistenceController.shared))
     }
 }

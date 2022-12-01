@@ -12,12 +12,13 @@ struct WeatherListView: View {
     // updates when viewModel data is updated
     @StateObject var viewModel = ListViewModel()
     
-    let repo: WeatherRepository?
+//    let repo: WeatherRepository?
+    @EnvironmentObject var repo: WeatherRepository
     
     var body: some View {
         NavigationView {
             List(0..<10) { item in
-                CellListView(city: viewModel.cityList.randomElement() ?? "London", repo: repo!)
+                CellListView(city: viewModel.cityList.randomElement() ?? "London", repo: repo)
                            }
         }
         
@@ -30,6 +31,6 @@ struct WeatherListView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        WeatherListView(repo: nil)
+        WeatherListView()
     }
 }

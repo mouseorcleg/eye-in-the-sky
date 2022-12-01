@@ -11,7 +11,7 @@ protocol WeatherRepo {
     func fetchWeatherFromRepo(city: String, completion: @escaping (Result<WeatherUIModel, WeatherError>) -> Void)
 }
 
-class WeatherRepository: WeatherRepo {
+class WeatherRepository: ObservableObject, WeatherRepo {
     private let weatherService: WeatherService
     private let persistanceController: PersistenceController
     

@@ -20,9 +20,9 @@ class WeatherViewModel: ObservableObject {
     //if stale show in gray
     
     private let city: String
-    private let repo: WeatherRepo
+    private let repo: WeatherRepository
     
-    init(city: String, repo: WeatherRepo) {
+    init(city: String, repo: WeatherRepository) {
         self.city = city
         self.repo = repo
         fetchWeatherUI()
@@ -31,8 +31,8 @@ class WeatherViewModel: ObservableObject {
     private func fetchWeatherUI() {
         let superCity = self.city
         let repo2 = repo
-        DispatchQueue.main.async {
-            repo2.fetchWeather(city: superCity) { result in
+        
+        repo2.fetchWeatherFromRepo(city: superCity) { result in
                 switch result {
                 case .success(let model):
                     self.title = model.title
@@ -45,7 +45,6 @@ class WeatherViewModel: ObservableObject {
                 case .failure(let error):
                     print("hehe")
                 }
-            
             }
         }
         
@@ -53,7 +52,5 @@ class WeatherViewModel: ObservableObject {
         //there will 2 options:
         //1) success that can be fresh or stale
         //2) error that will show city name and all other fields in darker gray
-        
-    
-    }
+
 }

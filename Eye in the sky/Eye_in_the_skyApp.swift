@@ -19,9 +19,9 @@ struct Eye_in_the_skyApp: App {
     
     
     var body: some Scene {
-        WindowGroup<WeatherListView> {
-            let repo = WeatherRepository(weatherService: WeatherService(), persistanceController: PersistenceController.shared)
-            WeatherListView(repo: repo)
+        WindowGroup {
+//            let repo = WeatherRepository(weatherService: WeatherService(), persistanceController: PersistenceController.shared)
+            WeatherListView().environmentObject(WeatherRepository(weatherService: WeatherService(), persistanceController: PersistenceController.shared))
         }
     }
 }
