@@ -11,8 +11,6 @@ struct WeatherListView: View {
     
     // updates when viewModel data is updated
     @StateObject var viewModel = ListViewModel()
-    
-//    let repo: WeatherRepository?
     @EnvironmentObject var repo: WeatherRepository
     
     var body: some View {
