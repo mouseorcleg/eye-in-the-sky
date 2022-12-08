@@ -23,7 +23,7 @@ class WeatherService {
         return URL(string: "\(endpoint)?q=\(city)&appid=\(key)&units=\(celcius)")
     }
     
-    func updateWeather(city: String, completion: @escaping (Result<WeatherDataNetworkingModel, WeatherError>) -> Void) {
+    func updateWeather(city: String, completion: @escaping (Result<WeatherDataNetworkingModel, WeatherError>) -> Void) async {
         guard let url = generateURL(city: city) else {
             return completion(.failure(WeatherError(msg: "Failed to create url")))
         }

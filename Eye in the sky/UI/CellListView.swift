@@ -55,6 +55,6 @@ struct CellListView: View {
 
 struct CellListView_Previews: PreviewProvider {
     static var previews: some View {
-        CellListView(city: "Berlin", repo: WeatherRepository(weatherService: WeatherService()))
+        CellListView(city: "Berlin", repo: WeatherRepository(weatherService: WeatherService(), persistanceController: .shared))
     }
 }

@@ -9,18 +9,19 @@ import Foundation
 import GRDB
 
 protocol WeatherRepo {
-    func fetchWeatherFromRepo(city: String, completion: @escaping (Result<WeatherUIModel, WeatherError>) -> Void)
+    func fetchWeatherFromRepo(city: String, completion: @escaping (Result<WeatherUIModel, WeatherError>) -> Void) async
 }
 
 class WeatherRepository: ObservableObject, WeatherRepo {
     private let weatherService: WeatherService
-//    private let persistanceController: PersistenceController
+    private let persistanceController: WeatherDatabase
     
-    init(weatherService: WeatherService) {
+    init(weatherService: WeatherService, persistanceController: WeatherDatabase) {
         self.weatherService = weatherService
+        self.persistanceController = persistanceController
     }
     
-    func fetchWeatherFromRepo(city: String, completion: @escaping (Result<WeatherUIModel, WeatherError>) -> Void) {
+    func fetchWeatherFromRepo(city: String, completion: @escaping (Result<WeatherUIModel, WeatherError>) -> Void) async {
         weatherService.updateWeather(city: city) { result in
             switch (result) {
             case .success(let model):
@@ -44,9 +45,7 @@ class WeatherRepository: ObservableObject, WeatherRepo {
                     icon: model.weather.first?.icon ?? "-"
                 )
                 
-                WeatherDatabase.saveWeather(dbModel)
-                
-                
+                try persistanceController.saveWeather(&dbModel)
                 
                 completion(.success(uiModel))
             case .failure(let error):

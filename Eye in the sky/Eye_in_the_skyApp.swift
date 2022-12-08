@@ -13,7 +13,7 @@ struct Eye_in_the_skyApp: App {
     var body: some Scene {
         WindowGroup {
             WeatherListView()
-                .environmentObject(WeatherRepository(weatherService: WeatherService()))
+                .environmentObject(WeatherRepository(weatherService: WeatherService(), persistanceController: .shared))
                 .environment(\.weatherDatabase, .shared)
         }
     }
