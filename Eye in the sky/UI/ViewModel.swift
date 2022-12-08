@@ -33,6 +33,7 @@ class WeatherViewModel: ObservableObject {
         let repo2 = repo
         
         repo2.fetchWeatherFromRepo(city: superCity) { result in
+            DispatchQueue.main.async {
                 switch result {
                 case .success(let model):
                     self.title = model.title
@@ -44,6 +45,7 @@ class WeatherViewModel: ObservableObject {
                     
                 case .failure(let error):
                     print("hehe")
+                    }
                 }
             }
         }
