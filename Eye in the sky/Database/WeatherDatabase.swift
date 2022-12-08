@@ -51,6 +51,44 @@ struct WeatherDatabase {
         
         return migrator
     }
+}
+
+// MARK: - Database Access: Writes
+
+extension WeatherDatabase {
     
+    // A validation error that prevents weather without city name from being saved into the database.
+    
+    enum ValidationError: LocalizedError {
+        case missingName
+        
+        var errorDescription: String? {
+            switch self {
+            case .missingName:
+                return "I need a city name to save it"
+            }
+        }
+    }
+    
+    // Saves (inserts or updates) the weather. When the method returns, the weather is present in the database, and its id is not nil.
+    
+    func saveWeather(_ weatherDatabase: inout WeatherDataModel) async throws {
+        if weatherDatabase.name.isEmpty {
+            throw ValidationError.missingName
+        }
+        weatherDatabase = try await dbWriter.write { [weatherDatabase] db in
+            try weatherDatabase.saved(db)
+        }
+    }
     
 }
+
+// MARK: - Database Access: Reads
+
+extension WeatherDatabase {
+    /// Provides a read-only access to the database
+    var databaseReader: DatabaseReader {
+        dbWriter
+    }
+}
+
