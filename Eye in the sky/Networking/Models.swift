@@ -10,7 +10,6 @@ import Foundation
 
 struct WeatherDataNetworkingModel: Codable {
     let name: String
-    let timezone: Int
     let weather: [CurrentWeather]
     let main: MainDetails
     let wind: Windy

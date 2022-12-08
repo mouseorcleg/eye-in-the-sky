@@ -38,8 +38,7 @@ struct WeatherDatabase {
             try db.create(table: "citiesWeather") { t in
                 t.autoIncrementedPrimaryKey("id")
                 t.column("name", .text).notNull()
-                t.column("timezone", .integer)
-                t.column("descriotion", .text)
+                t.column("description", .text)
                 t.column("icon", .text)
                 t.column("temp", .double)
                 t.column("humidity", .integer)

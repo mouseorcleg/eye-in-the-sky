@@ -14,13 +14,20 @@ struct WeatherDataModel: Identifiable, Equatable {
     var id: Int64?
     
     var name: String
-    var timezone: Int
-    var descriotion: String
-    var icon: String
-    var temp: Float
+    var description: String
+    var temp: Double
     var humidity: Int
-    var wind: Float
+    var wind: Double
+    var icon: String
     
+    static func createDataModel(name: String, description: String, temp: Double, humidity: Int, wind: Double, icon: String) -> WeatherDataModel {
+        return WeatherDataModel(name: name,
+                                description: description,
+                                temp: temp,
+                                humidity: humidity,
+                                wind: wind,
+                                icon: icon)
+    }
 }
 
 //extension WeatherDataModel {
@@ -38,8 +45,7 @@ extension WeatherDataModel: Codable, FetchableRecord, MutablePersistableRecord {
     // Define database columns from CodingKeys
     fileprivate enum Columns {
         static let name = Column(CodingKeys.name)
-        static let timezone = Column(CodingKeys.timezone)
-        static let description = Column(CodingKeys.descriotion)
+        static let description = Column(CodingKeys.description)
         static let icon = Column(CodingKeys.icon)
         static let temp = Column(CodingKeys.temp)
         static let humidity = Column(CodingKeys.humidity)
