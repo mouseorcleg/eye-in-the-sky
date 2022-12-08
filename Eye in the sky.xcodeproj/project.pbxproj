@@ -14,6 +14,7 @@
 		CB534770291AC1420009EDB9 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB53476F291AC1420009EDB9 /* Models.swift */; };
 		CB534772291AC1680009EDB9 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB534771291AC1680009EDB9 /* ViewModel.swift */; };
 		CB534776291FFC0A0009EDB9 /* CellListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB534775291FFC0A0009EDB9 /* CellListView.swift */; };
+		CB8D090429420E0800099943 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = CB8D090329420E0800099943 /* GRDB */; };
 		CBAB777929210A130007C597 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAB777829210A120007C597 /* WeatherService.swift */; };
 		CBDB454F292B9A39009492DA /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB454E292B9A39009492DA /* ListViewModel.swift */; };
 		CBDB4551292B9B09009492DA /* WeatherRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB4550292B9B09009492DA /* WeatherRepository.swift */; };
@@ -38,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB8D090429420E0800099943 /* GRDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +127,9 @@
 			dependencies = (
 			);
 			name = "Eye in the sky";
+			packageProductDependencies = (
+				CB8D090329420E0800099943 /* GRDB */,
+			);
 			productName = "Eye in the sky";
 			productReference = CB3C40C6291AA5B800098594 /* Eye in the sky.app */;
 			productType = "com.apple.product-type.application";
@@ -153,6 +158,9 @@
 				Base,
 			);
 			mainGroup = CB3C40BD291AA5B800098594;
+			packageReferences = (
+				CB8D090229420E0800099943 /* XCRemoteSwiftPackageReference "GRDB" */,
+			);
 			productRefGroup = CB3C40C7291AA5B800098594 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -387,6 +395,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CB8D090229420E0800099943 /* XCRemoteSwiftPackageReference "GRDB" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRDB.swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CB8D090329420E0800099943 /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CB8D090229420E0800099943 /* XCRemoteSwiftPackageReference "GRDB" */;
+			productName = GRDB;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CB3C40BE291AA5B800098594 /* Project object */;
 }
