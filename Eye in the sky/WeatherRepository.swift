@@ -13,11 +13,10 @@ protocol WeatherRepo {
 
 class WeatherRepository: ObservableObject, WeatherRepo {
     private let weatherService: WeatherService
-    private let persistanceController: PersistenceController
+//    private let persistanceController: PersistenceController
     
-    init(weatherService: WeatherService, persistanceController: PersistenceController) {
+    init(weatherService: WeatherService) {
         self.weatherService = weatherService
-        self.persistanceController = persistanceController
     }
     
     func fetchWeatherFromRepo(city: String, completion: @escaping (Result<WeatherUIModel, WeatherError>) -> Void) {
