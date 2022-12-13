@@ -6,21 +6,22 @@
 //
 
 import Foundation
+import GRDB
 
 protocol WeatherRepo {
-    func fetchWeatherFromRepo(city: String, completion: @escaping (Result<WeatherUIModel, WeatherError>) -> Void)
+    func fetchWeatherFromRepo(city: String, completion: @escaping (Result<WeatherUIModel, WeatherError>) -> Void) async
 }
 
 class WeatherRepository: ObservableObject, WeatherRepo {
     private let weatherService: WeatherService
-    private let persistanceController: PersistenceController
+    private let persistanceController: WeatherDatabase
     
-    init(weatherService: WeatherService, persistanceController: PersistenceController) {
+    init(weatherService: WeatherService, persistanceController: WeatherDatabase) {
         self.weatherService = weatherService
         self.persistanceController = persistanceController
     }
     
-    func fetchWeatherFromRepo(city: String, completion: @escaping (Result<WeatherUIModel, WeatherError>) -> Void) {
+    func fetchWeatherFromRepo(city: String, completion: @escaping (Result<WeatherUIModel, WeatherError>) -> Void) async {
         weatherService.updateWeather(city: city) { result in
             switch (result) {
             case .success(let model):
@@ -33,7 +34,18 @@ class WeatherRepository: ObservableObject, WeatherRepo {
                     icon: model.weather.first?.icon ?? "-"
                 )
                 
-                //save to coredata; if there is an entry, rewrite it
+                //save to db; if there is an entry, rewrite it
+                
+                var dbModel: WeatherDataModel = WeatherDataModel.createDataModel(
+                    name: model.name,
+                    description: model.weather.first?.main ?? "No descriprion",
+                    temp: Double(model.main.temp),
+                    humidity: model.main.humidity,
+                    wind: Double(model.wind.speed),
+                    icon: model.weather.first?.icon ?? "-"
+                )
+                
+                try persistanceController.saveWeather(&dbModel)
                 
                 completion(.success(uiModel))
             case .failure(let error):

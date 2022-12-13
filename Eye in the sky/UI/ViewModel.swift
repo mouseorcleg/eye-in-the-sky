@@ -22,17 +22,17 @@ class WeatherViewModel: ObservableObject {
     private let city: String
     private let repo: WeatherRepository
     
-    init(city: String, repo: WeatherRepository) {
+    init(city: String, repo: WeatherRepository) async {
         self.city = city
         self.repo = repo
-        fetchWeatherUI()
+        await fetchWeatherUI()
     }
     
-    private func fetchWeatherUI() {
+    private func fetchWeatherUI() async {
         let superCity = self.city
         let repo2 = repo
         
-        repo2.fetchWeatherFromRepo(city: superCity) { result in
+        try await repo2.fetchWeatherFromRepo(city: superCity) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let model):
