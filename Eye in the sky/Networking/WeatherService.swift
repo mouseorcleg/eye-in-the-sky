@@ -17,12 +17,13 @@ class WeatherError: Error {
 class WeatherService {
     private let key = "cc5f0b417551c77d68956a6336441d72"
     private let endpoint = "https://api.openweathermap.org/data/2.5/weather"
+    private let celcius = "metric"
     
     private func generateURL(city: String) -> URL? {
-        return URL(string: "\(endpoint)?q=\(city)&appid=\(key)")
+        return URL(string: "\(endpoint)?q=\(city)&appid=\(key)&units=\(celcius)")
     }
     
-    func fetchWeather(city: String, completion: @escaping (Result<WeatherDataModel, WeatherError>) -> Void) {
+    func updateWeather(city: String, completion: @escaping (Result<WeatherDataModel, WeatherError>) -> Void) {
         guard let url = generateURL(city: city) else {
             return completion(.failure(WeatherError(msg: "Failed to create url")))
         }

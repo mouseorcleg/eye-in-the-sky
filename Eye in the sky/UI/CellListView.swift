@@ -8,9 +8,19 @@
 import SwiftUI
 
 struct CellListView: View {
-    var city: String
+    
     // updates when viewModel data is updated
-    @StateObject var viewModel = WeatherViewModel(city: city)
+    @StateObject var viewModel: WeatherViewModel
+    
+    var city: String
+    
+    init(city: String, repo: WeatherRepository) {
+        self.city = city
+        self._viewModel = StateObject(wrappedValue: WeatherViewModel(city: city, repo: repo))
+
+    }
+    
+    // smth really strange going on with repos here
     
     var body: some View {
         
@@ -40,14 +50,11 @@ struct CellListView: View {
         }
         
     }
-    
-    init(city: String) {
-        self.city = city
-    }
 }
+
 
 struct CellListView_Previews: PreviewProvider {
     static var previews: some View {
-        CellListView(city: "London")
+        CellListView(city: "Berlin", repo: WeatherRepository(weatherService: WeatherService(), persistanceController: PersistenceController.shared))
     }
 }

@@ -10,11 +10,18 @@ import SwiftUI
 @main
 struct Eye_in_the_skyApp: App {
     
-    let persistenceController = PersistenceController.shared
+//    private let weatherService = WeatherService()
+//    private let persistenceController = PersistenceController.shared
+//    private func getWeatherRepo() -> WeatherRepo {
+//        return WeatherRepository(weatherService: weatherService, persistanceController: persistenceController)
+//    }
+    
+    
     
     var body: some Scene {
-        WindowGroup<WeatherListView> {
-            WeatherListView()
+        WindowGroup {
+//            let repo = WeatherRepository(weatherService: WeatherService(), persistanceController: PersistenceController.shared)
+            WeatherListView().environmentObject(WeatherRepository(weatherService: WeatherService(), persistanceController: PersistenceController.shared))
         }
     }
 }
