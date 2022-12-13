@@ -14,8 +14,10 @@
 		CB534770291AC1420009EDB9 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB53476F291AC1420009EDB9 /* Models.swift */; };
 		CB534772291AC1680009EDB9 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB534771291AC1680009EDB9 /* ViewModel.swift */; };
 		CB534776291FFC0A0009EDB9 /* CellListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB534775291FFC0A0009EDB9 /* CellListView.swift */; };
-		CBAB77372920121F0007C597 /* LocalWeatherData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CBAB77352920121F0007C597 /* LocalWeatherData.xcdatamodeld */; };
-		CBAB7739292015640007C597 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAB7738292015640007C597 /* PersistenceController.swift */; };
+		CB6965232942244300449126 /* WeatherDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6965222942244300449126 /* WeatherDatabase.swift */; };
+		CB696525294230F500449126 /* WeatherDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB696524294230F500449126 /* WeatherDataModel.swift */; };
+		CB6965272942354F00449126 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6965262942354F00449126 /* Persistence.swift */; };
+		CB8D090429420E0800099943 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = CB8D090329420E0800099943 /* GRDB */; };
 		CBAB777929210A130007C597 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAB777829210A120007C597 /* WeatherService.swift */; };
 		CBDB454F292B9A39009492DA /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB454E292B9A39009492DA /* ListViewModel.swift */; };
 		CBDB4551292B9B09009492DA /* WeatherRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB4550292B9B09009492DA /* WeatherRepository.swift */; };
@@ -30,8 +32,9 @@
 		CB53476F291AC1420009EDB9 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		CB534771291AC1680009EDB9 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		CB534775291FFC0A0009EDB9 /* CellListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellListView.swift; sourceTree = "<group>"; };
-		CBAB77362920121F0007C597 /* LocalWeatherData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalWeatherData.xcdatamodel; sourceTree = "<group>"; };
-		CBAB7738292015640007C597 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		CB6965222942244300449126 /* WeatherDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDatabase.swift; sourceTree = "<group>"; };
+		CB696524294230F500449126 /* WeatherDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataModel.swift; sourceTree = "<group>"; };
+		CB6965262942354F00449126 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		CBAB777829210A120007C597 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		CBDB454E292B9A39009492DA /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		CBDB4550292B9B09009492DA /* WeatherRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRepository.swift; sourceTree = "<group>"; };
@@ -42,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB8D090429420E0800099943 /* GRDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,7 +74,7 @@
 				CB3C40C9291AA5B800098594 /* Eye_in_the_skyApp.swift */,
 				CBDB4550292B9B09009492DA /* WeatherRepository.swift */,
 				CBAB7777292109840007C597 /* UI */,
-				CBAB77762921097B0007C597 /* Data */,
+				CBAB77762921097B0007C597 /* Database */,
 				CBAB77752921096D0007C597 /* Networking */,
 				CB3C40CD291AA5BE00098594 /* Assets.xcassets */,
 				CB3C40CF291AA5BE00098594 /* Preview Content */,
@@ -95,13 +99,14 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		CBAB77762921097B0007C597 /* Data */ = {
+		CBAB77762921097B0007C597 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				CBAB7738292015640007C597 /* PersistenceController.swift */,
-				CBAB77352920121F0007C597 /* LocalWeatherData.xcdatamodeld */,
+				CB6965222942244300449126 /* WeatherDatabase.swift */,
+				CB696524294230F500449126 /* WeatherDataModel.swift */,
+				CB6965262942354F00449126 /* Persistence.swift */,
 			);
-			path = Data;
+			path = Database;
 			sourceTree = "<group>";
 		};
 		CBAB7777292109840007C597 /* UI */ = {
@@ -131,6 +136,9 @@
 			dependencies = (
 			);
 			name = "Eye in the sky";
+			packageProductDependencies = (
+				CB8D090329420E0800099943 /* GRDB */,
+			);
 			productName = "Eye in the sky";
 			productReference = CB3C40C6291AA5B800098594 /* Eye in the sky.app */;
 			productType = "com.apple.product-type.application";
@@ -159,6 +167,9 @@
 				Base,
 			);
 			mainGroup = CB3C40BD291AA5B800098594;
+			packageReferences = (
+				CB8D090229420E0800099943 /* XCRemoteSwiftPackageReference "GRDB" */,
+			);
 			productRefGroup = CB3C40C7291AA5B800098594 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -185,16 +196,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB6965272942354F00449126 /* Persistence.swift in Sources */,
 				CBAB777929210A130007C597 /* WeatherService.swift in Sources */,
-				CBAB77372920121F0007C597 /* LocalWeatherData.xcdatamodeld in Sources */,
 				CBDB4551292B9B09009492DA /* WeatherRepository.swift in Sources */,
-				CBAB7739292015640007C597 /* PersistenceController.swift in Sources */,
 				CB534770291AC1420009EDB9 /* Models.swift in Sources */,
 				CB3C40CC291AA5B900098594 /* WeatherListView.swift in Sources */,
 				CBDB454F292B9A39009492DA /* ListViewModel.swift in Sources */,
 				CB534776291FFC0A0009EDB9 /* CellListView.swift in Sources */,
+				CB696525294230F500449126 /* WeatherDataModel.swift in Sources */,
 				CB534772291AC1680009EDB9 /* ViewModel.swift in Sources */,
 				CB3C40CA291AA5B800098594 /* Eye_in_the_skyApp.swift in Sources */,
+				CB6965232942244300449126 /* WeatherDatabase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,18 +408,24 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCVersionGroup section */
-		CBAB77352920121F0007C597 /* LocalWeatherData.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				CBAB77362920121F0007C597 /* LocalWeatherData.xcdatamodel */,
-			);
-			currentVersion = CBAB77362920121F0007C597 /* LocalWeatherData.xcdatamodel */;
-			path = LocalWeatherData.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
+/* Begin XCRemoteSwiftPackageReference section */
+		CB8D090229420E0800099943 /* XCRemoteSwiftPackageReference "GRDB" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRDB.swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
 		};
-/* End XCVersionGroup section */
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CB8D090329420E0800099943 /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CB8D090229420E0800099943 /* XCRemoteSwiftPackageReference "GRDB" */;
+			productName = GRDB;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CB3C40BE291AA5B800098594 /* Project object */;
 }

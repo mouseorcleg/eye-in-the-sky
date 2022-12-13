@@ -6,11 +6,9 @@
 //
 
 import Foundation
+// Data layer model - use for networking
 
-// Data layer model - use for networking + mb Core Data
-
-struct WeatherDataModel: Codable {
-    let timezone: Int
+struct WeatherDataNetworkingModel: Codable {
     let name: String
     let weather: [CurrentWeather]
     let main: MainDetails

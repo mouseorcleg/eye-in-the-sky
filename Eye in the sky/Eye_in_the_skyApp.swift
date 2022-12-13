@@ -10,18 +10,27 @@ import SwiftUI
 @main
 struct Eye_in_the_skyApp: App {
     
-//    private let weatherService = WeatherService()
-//    private let persistenceController = PersistenceController.shared
-//    private func getWeatherRepo() -> WeatherRepo {
-//        return WeatherRepository(weatherService: weatherService, persistanceController: persistenceController)
-//    }
-    
-    
-    
     var body: some Scene {
         WindowGroup {
-//            let repo = WeatherRepository(weatherService: WeatherService(), persistanceController: PersistenceController.shared)
-            WeatherListView().environmentObject(WeatherRepository(weatherService: WeatherService(), persistanceController: PersistenceController.shared))
+            WeatherListView()
+                .environmentObject(WeatherRepository(weatherService: WeatherService(), persistanceController: .shared))
+                .environment(\.weatherDatabase, .shared)
         }
+    }
+}
+
+// MARK: - Give SwiftUI access to the database
+// Define a new environment key that grants access to an WeatherDatabase.
+// The technique is documented at
+// <https://developer.apple.com/documentation/swiftui/environmentkey>.
+
+private struct WeatherDatabaseKey: EnvironmentKey {
+    static var defaultValue: WeatherDatabase { .empty() }
+}
+
+extension EnvironmentValues {
+    var weatherDatabase: WeatherDatabase {
+        get { self[WeatherDatabaseKey.self] }
+        set { self[WeatherDatabaseKey.self] = newValue }
     }
 }
