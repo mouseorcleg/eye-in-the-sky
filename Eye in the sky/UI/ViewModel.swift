@@ -9,7 +9,7 @@ import Foundation
 
 // Data needed by view, when it updates, view updates as well
 
-class WeatherViewModel: ObservableObject {
+@MainActor class WeatherViewModel: ObservableObject {
     @Published var title: String = "-"
     @Published var temp: String = "-"
     @Published var description: String = "-"
@@ -25,34 +25,27 @@ class WeatherViewModel: ObservableObject {
     init(city: String, repo: WeatherRepository) async {
         self.city = city
         self.repo = repo
-        await fetchWeatherUI()
     }
     
     private func fetchWeatherUI() async {
         let superCity = self.city
-        let repo2 = repo
         
-        try await repo2.fetchWeatherFromRepo(city: superCity) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let model):
-                    self.title = model.title
-                    self.temp = model.temp
-                    self.description = model.description
-                    self.humidity = model.humidity
-                    self.wind = model.wind
-                    self.icon = model.icon
-                    
-                case .failure(let error):
-                    print("hehe")
-                    }
-                }
-            }
+        let result = await repo.fetchWeatherFromRepo(city: superCity)
+        switch (result) {
+        case .failure(let error) : print("error: " + error.message)
+        case .success(let model) :
+            self.title = model.title
+            self.temp = model.temp
+            self.description = model.description
+            self.humidity = model.humidity
+            self.wind = model.wind
+            self.icon = model.icon
         }
-        
+    }
+}
         
         //there will 2 options:
         //1) success that can be fresh or stale
         //2) error that will show city name and all other fields in darker gray
 
-}
+
