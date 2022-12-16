@@ -9,12 +9,11 @@ import SwiftUI
 
 @main
 struct Eye_in_the_skyApp: App {
+    static let weatherRepo = WeatherRepository(weatherService: WeatherService(), persistanceController: .shared)
     
     var body: some Scene {
         WindowGroup {
             WeatherListView()
-                .environmentObject(WeatherRepository(weatherService: WeatherService(), persistanceController: .shared))
-                .environment(\.weatherDatabase, .shared)
         }
     }
 }

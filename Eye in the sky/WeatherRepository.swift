@@ -13,6 +13,9 @@ protocol WeatherRepo {
 }
 
 class WeatherRepository: ObservableObject, WeatherRepo {
+    
+    static let cityList: Array<String> = ["Amsterdam", "Athens", "Bern", "Dublin", "Helsinki", "Lisbon", "London", "Rome", "Vienna", "Paris", "Prague", "Oslo", "Madrid", "Reykjavík", "Stockholm", "Brussels"]
+    
     private let weatherService: WeatherService
     private let persistanceController: WeatherDatabase
     

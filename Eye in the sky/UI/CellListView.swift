@@ -37,18 +37,17 @@ struct CellListView: View {
                     .fontDesign(.monospaced)
             }
             .padding(14)
-        }.onAppear{
+        }.onAppear {
             Task {
                 await viewModel.fetchWeatherUI()
             }
         }
-        
     }
 }
 
 
-//struct CellListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CellListView(viewModel: WeatherViewModel(city: "Berlin", repo: Eye_in_the_skyApp.weatherRepo))
-//    }
-//}
+struct CellListView_Previews: PreviewProvider {
+    static var previews: some View {
+        CellListView(viewModel: CellListView.WeatherViewModel(city: "London", repo: Eye_in_the_skyApp.weatherRepo))
+    }
+}

@@ -10,13 +10,13 @@ import SwiftUI
 struct WeatherListView: View {
     
     // updates when viewModel data is updated
-    @StateObject var viewModel = ListViewModel()
+    @StateObject var viewModel = WeatherListViewModel()
     @EnvironmentObject var repo: WeatherRepository
     
     var body: some View {
         NavigationView {
             List(0..<10) { item in
-                CellListView(city: viewModel.cityList.randomElement() ?? "London", repo: repo)
+                CellListView(viewModel: CellListView.WeatherViewModel(city: WeatherRepository.cityList.randomElement() ?? "London", repo: Eye_in_the_skyApp.weatherRepo))
                            }
         }
         
