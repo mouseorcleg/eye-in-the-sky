@@ -44,23 +44,3 @@ class WeatherService {
         }
     }
 }
-//
-//        let task = URLSession.shared.dataTask(with: url) {
-//            data, _, error in
-//            guard let data = data, error == nil
-//            else {
-//                return .failure(WeatherError(msg: "Couldn't get data from URL"))
-//            }
-//
-//            // Convert data to model
-//
-//            do {
-//                let model = try JSONDecoder().decode(WeatherDataNetworkingModel.self, from: data)
-//                return .success(model)
-//            }
-//            catch {
-//                return .failure(WeatherError(msg: "failed to decode JSON data"))
-//            }
-//
-//        }
-//        task.resume()

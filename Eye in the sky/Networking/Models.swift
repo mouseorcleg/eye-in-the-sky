@@ -39,12 +39,21 @@ struct WeatherUIModel {
     let wind: String
     let icon: String
     
-    static func createUiModel(title: String = "-", temp: String = "-", description: String = "-", humidity: String = "-", wind: String = "-", icon: String = "") -> WeatherUIModel {
+    static func from(title: String = "-", temp: String = "-", description: String = "-", humidity: String = "-", wind: String = "-", icon: String = "") -> WeatherUIModel {
         return WeatherUIModel(title: title,
                               temp: temp,
                               description: description,
                               humidity: humidity,
                               wind: wind,
                               icon: icon)
+    }
+    
+    static func from(model: WeatherDataNetworkingModel) -> WeatherUIModel {
+        return WeatherUIModel(title: model.name,
+                              temp: String(format: "%.2f", model.main.temp),
+                              description: model.weather.first?.main ?? "No description",
+                              humidity: String(format: "Humidity: %.2f%%", model.main.humidity),
+                              wind: String(format: "Wind: %2.fm/s", model.wind.speed),
+                              icon: model.weather.first?.icon ?? "-")
     }
 }
