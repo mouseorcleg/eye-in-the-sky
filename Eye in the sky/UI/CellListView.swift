@@ -12,16 +12,6 @@ struct CellListView: View {
     // updates when viewModel data is updated
     @StateObject var viewModel: WeatherViewModel
     
-    var city: String
-    
-    init(city: String, repo: WeatherRepository) {
-        self.city = city
-        self._viewModel = StateObject(wrappedValue: WeatherViewModel(city: city, repo: repo))
-
-    }
-    
-    // smth really strange going on with repos here
-    
     var body: some View {
         
         HStack {
@@ -47,14 +37,18 @@ struct CellListView: View {
                     .fontDesign(.monospaced)
             }
             .padding(14)
+        }.onAppear{
+            Task {
+                await viewModel.fetchWeatherUI()
+            }
         }
         
     }
 }
 
 
-struct CellListView_Previews: PreviewProvider {
-    static var previews: some View {
-        CellListView(city: "Berlin", repo: WeatherRepository(weatherService: WeatherService(), persistanceController: .shared))
-    }
-}
+//struct CellListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CellListView(viewModel: WeatherViewModel(city: "Berlin", repo: Eye_in_the_skyApp.weatherRepo))
+//    }
+//}

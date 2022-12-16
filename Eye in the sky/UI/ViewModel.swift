@@ -27,7 +27,7 @@ import Foundation
         self.repo = repo
     }
     
-    private func fetchWeatherUI() async {
+    func fetchWeatherUI() async {
         let superCity = self.city
         
         let result = await repo.fetchWeatherFromRepo(city: superCity)
