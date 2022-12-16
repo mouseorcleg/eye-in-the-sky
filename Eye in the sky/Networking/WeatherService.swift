@@ -23,32 +23,44 @@ class WeatherService {
         return URL(string: "\(endpoint)?q=\(city)&appid=\(key)&units=\(celcius)")
     }
     
-    func updateWeather(city: String, completion: @escaping (Result<WeatherDataNetworkingModel, WeatherError>) -> Void) async {
+    func updateWeather(city: String) async -> Result<WeatherDataNetworkingModel, WeatherError> {
         guard let url = generateURL(city: city) else {
-            return completion(.failure(WeatherError(msg: "Failed to create url")))
+            return .failure(WeatherError(msg: "Failed to create url"))
         }
         
-        let task = URLSession.shared.dataTask(with: url) {
-            data, _, error in
-            guard let data = data, error == nil
-            else {
-                return completion(.failure(WeatherError(msg: "Couldn't get data from URL")))
+        do {
+            let (data, response) = try await URLSession.shared.data(from: url)
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                return .failure(WeatherError(msg: "Couldn't get data from URL"))
             }
-            
-            // Convert data to model
-            
-            do {
-                let model = try JSONDecoder().decode(WeatherDataNetworkingModel.self, from: data)
-                return completion(.success(model))
-            }
-            catch {
-                return completion(.failure(WeatherError(msg: "failed to decode JSON data")))
-            }
-            
+            let model = try JSONDecoder().decode(WeatherDataNetworkingModel.self, from: data)
+            return .success(model)
         }
-        task.resume()
-        
-        return
+        catch DecodingError.dataCorrupted {
+            return .failure(WeatherError(msg: "failed to decode JSON data"))
+        }
+        catch {
+            return.failure(WeatherError(msg: "Not sure what, but something is qlearly wrong"))
+        }
     }
-    
 }
+//
+//        let task = URLSession.shared.dataTask(with: url) {
+//            data, _, error in
+//            guard let data = data, error == nil
+//            else {
+//                return .failure(WeatherError(msg: "Couldn't get data from URL"))
+//            }
+//
+//            // Convert data to model
+//
+//            do {
+//                let model = try JSONDecoder().decode(WeatherDataNetworkingModel.self, from: data)
+//                return .success(model)
+//            }
+//            catch {
+//                return .failure(WeatherError(msg: "failed to decode JSON data"))
+//            }
+//
+//        }
+//        task.resume()
