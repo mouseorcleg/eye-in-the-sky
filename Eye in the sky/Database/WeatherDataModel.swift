@@ -28,6 +28,15 @@ struct WeatherDataModel: Identifiable, Equatable {
                                 wind: wind,
                                 icon: icon)
     }
+    
+    static func createDataModel(model: WeatherDataNetworkingModel) -> WeatherDataModel {
+        return WeatherDataModel(name: model.name,
+                                description: model.weather.first?.main ?? "No description",
+                                temp: model.main.temp,
+                                humidity: model.main.humidity,
+                                wind: model.wind.speed,
+                                icon: model.weather.first?.icon ?? "-")
+    }
 }
 
 //extension WeatherDataModel {
