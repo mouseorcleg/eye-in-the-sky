@@ -19,6 +19,7 @@ struct WeatherDataModel: Identifiable, Equatable {
     var humidity: Int
     var wind: Double
     var icon: String
+    var timestamp: Int64
     
     static func createDataModel(name: String, description: String, temp: Double, humidity: Int, wind: Double, icon: String) -> WeatherDataModel {
         return WeatherDataModel(name: name,
@@ -26,7 +27,8 @@ struct WeatherDataModel: Identifiable, Equatable {
                                 temp: temp,
                                 humidity: humidity,
                                 wind: wind,
-                                icon: icon)
+                                icon: icon,
+                                timestamp: Int64(NSDate().timeIntervalSince1970))
     }
     
     static func createDataModel(model: WeatherDataNetworkingModel) -> WeatherDataModel {
@@ -35,8 +37,11 @@ struct WeatherDataModel: Identifiable, Equatable {
                                 temp: model.main.temp,
                                 humidity: model.main.humidity,
                                 wind: model.wind.speed,
-                                icon: model.weather.first?.icon ?? "-")
+                                icon: model.weather.first?.icon ?? "-",
+                                timestamp: Int64(NSDate().timeIntervalSince1970))
     }
+    
+    
 }
 
 //extension WeatherDataModel {
@@ -59,6 +64,7 @@ extension WeatherDataModel: Codable, FetchableRecord, MutablePersistableRecord {
         static let temp = Column(CodingKeys.temp)
         static let humidity = Column(CodingKeys.humidity)
         static let wind = Column(CodingKeys.wind)
+        static let timestamp = Column(CodingKeys.timestamp)
     }
     
     /// Updates a player id after it has been inserted in the database.

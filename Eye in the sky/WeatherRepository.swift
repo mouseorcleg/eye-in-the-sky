@@ -30,7 +30,7 @@ class WeatherRepository: ObservableObject, WeatherRepo {
         case .failure(let error): return .failure(error)
             //if there is an entry in db with the same city name, return it
             //if there is no entry in db, return an error
-        case .success(var model):
+        case .success(let model):
             var saveMe = WeatherDataModel.createDataModel(model: model)
             try? await persistanceController.saveWeather(&saveMe)
             return .success(WeatherUIModel.from(model: model))
