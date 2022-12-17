@@ -21,12 +21,12 @@ struct CurrentWeather: Codable {
 }
 
 struct MainDetails: Codable {
-    let temp: Float
+    let temp: Double
     let humidity: Int
 }
 
 struct Windy: Codable {
-    let speed: Float
+    let speed: Double
 }
 
 // works for ViewModel

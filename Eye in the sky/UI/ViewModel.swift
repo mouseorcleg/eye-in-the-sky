@@ -22,7 +22,7 @@ extension CellListView {
         private let city: String
         private let repo: WeatherRepository
         
-        init(city: String, repo: WeatherRepository) async {
+        init(city: String, repo: WeatherRepository) {
             self.city = city
             self.repo = repo
         }
