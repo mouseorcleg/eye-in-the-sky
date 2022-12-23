@@ -25,6 +25,10 @@ class WeatherRepository: ObservableObject, WeatherRepo {
     }
     
     func fetchWeatherFromRepo(city: String) async -> Result<WeatherUIModel, WeatherError> {
+        
+        //check if there is data in db
+//        persistanceController.fetchAll(persistanceController)
+        
         let result = await weatherService.updateWeather(city: city)
         switch result {
         case .failure(let error): return .failure(error)

@@ -37,11 +37,13 @@ struct CellListView: View {
                     .fontDesign(.monospaced)
             }
             .padding(14)
-        }.onAppear {
+            
+        }.onAppear(perform: {
             Task {
                 await viewModel.fetchWeatherUI()
             }
-        }
+        })
+        
     }
 }
 

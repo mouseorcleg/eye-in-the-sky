@@ -41,6 +41,7 @@ struct WeatherDataModel: Identifiable, Equatable {
                                 timestamp: Int64(NSDate().timeIntervalSince1970))
     }
     
+    static let failureModel = WeatherDataModel(id: 0, name: "Failure", description: "Failure", temp: 0.0, humidity: 0, wind: 0.0, icon: "Failure", timestamp: 0)
     
 }
 
@@ -70,6 +71,21 @@ extension WeatherDataModel: Codable, FetchableRecord, MutablePersistableRecord {
     /// Updates a player id after it has been inserted in the database.
     mutating func didInsert(_ inserted: InsertionSuccess) {
         id = inserted.rowID
+    }
+}
+
+extension DerivableRequest<WeatherDataModel> {
+    /// A request of players ordered by name.
+    ///
+    /// For example:
+    ///
+    ///     let players: [Player] = try dbWriter.read { db in
+    ///         try Player.all().orderedByName().fetchAll(db)
+    ///     }
+    func orderedByTimestamp() -> Self {
+        // Sort by name in a localized case insensitive fashion
+        // See https://github.com/groue/GRDB.swift/blob/master/README.md#string-comparison
+        order(WeatherDataModel.Columns.timestamp.desc)
     }
 }
 
