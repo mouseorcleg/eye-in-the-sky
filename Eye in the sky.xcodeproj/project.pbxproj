@@ -19,7 +19,6 @@
 		CB6965272942354F00449126 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6965262942354F00449126 /* Persistence.swift */; };
 		CB8D090429420E0800099943 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = CB8D090329420E0800099943 /* GRDB */; };
 		CBAB777929210A130007C597 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAB777829210A120007C597 /* WeatherService.swift */; };
-		CBDB454F292B9A39009492DA /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB454E292B9A39009492DA /* ListViewModel.swift */; };
 		CBDB4551292B9B09009492DA /* WeatherRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB4550292B9B09009492DA /* WeatherRepository.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +35,6 @@
 		CB696524294230F500449126 /* WeatherDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataModel.swift; sourceTree = "<group>"; };
 		CB6965262942354F00449126 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		CBAB777829210A120007C597 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
-		CBDB454E292B9A39009492DA /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		CBDB4550292B9B09009492DA /* WeatherRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,7 +113,6 @@
 				CB534775291FFC0A0009EDB9 /* CellListView.swift */,
 				CB3C40CB291AA5B900098594 /* WeatherListView.swift */,
 				CB534771291AC1680009EDB9 /* ViewModel.swift */,
-				CBDB454E292B9A39009492DA /* ListViewModel.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -201,7 +198,6 @@
 				CBDB4551292B9B09009492DA /* WeatherRepository.swift in Sources */,
 				CB534770291AC1420009EDB9 /* Models.swift in Sources */,
 				CB3C40CC291AA5B900098594 /* WeatherListView.swift in Sources */,
-				CBDB454F292B9A39009492DA /* ListViewModel.swift in Sources */,
 				CB534776291FFC0A0009EDB9 /* CellListView.swift in Sources */,
 				CB696525294230F500449126 /* WeatherDataModel.swift in Sources */,
 				CB534772291AC1680009EDB9 /* ViewModel.swift in Sources */,

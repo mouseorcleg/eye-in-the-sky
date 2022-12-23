@@ -9,10 +9,13 @@ import Foundation
 import GRDB
 
 protocol WeatherRepo {
-    func fetchWeatherFromRepo(city: String, completion: @escaping (Result<WeatherUIModel, WeatherError>) -> Void) async
+    func fetchWeatherFromRepo(city: String) async -> Result<WeatherUIModel, WeatherError>
 }
 
 class WeatherRepository: ObservableObject, WeatherRepo {
+    
+    static let cityList: Array<String> = ["Amsterdam", "Athens", "Bern", "Dublin", "Helsinki", "Lisbon", "London", "Rome", "Vienna", "Paris", "Prague", "Oslo", "Madrid", "Reykjavík", "Stockholm", "Brussels"]
+    
     private let weatherService: WeatherService
     private let persistanceController: WeatherDatabase
     
@@ -21,39 +24,21 @@ class WeatherRepository: ObservableObject, WeatherRepo {
         self.persistanceController = persistanceController
     }
     
-    func fetchWeatherFromRepo(city: String, completion: @escaping (Result<WeatherUIModel, WeatherError>) -> Void) async {
-        weatherService.updateWeather(city: city) { result in
-            switch (result) {
-            case .success(let model):
-                let uiModel = WeatherUIModel.createUiModel(
-                    title: model.name,
-                    temp: "\(model.main.temp)°C",
-                    description: model.weather.first?.main ?? "No description",
-                    humidity: "Humidity: \(model.main.humidity)%",
-                    wind: "Wind: \(model.wind.speed) m/s",
-                    icon: model.weather.first?.icon ?? "-"
-                )
-                
-                //save to db; if there is an entry, rewrite it
-                
-                var dbModel: WeatherDataModel = WeatherDataModel.createDataModel(
-                    name: model.name,
-                    description: model.weather.first?.main ?? "No descriprion",
-                    temp: Double(model.main.temp),
-                    humidity: model.main.humidity,
-                    wind: Double(model.wind.speed),
-                    icon: model.weather.first?.icon ?? "-"
-                )
-                
-                try persistanceController.saveWeather(&dbModel)
-                
-                completion(.success(uiModel))
-            case .failure(let error):
-                print("hehe")
-                //if there is an entry in coredata with the same city name, return it
-                //if there is no entry in coredata, return an error
-//                completion(error)
-            }
+    func fetchWeatherFromRepo(city: String) async -> Result<WeatherUIModel, WeatherError> {
+        
+        //check if there is data in db
+//        persistanceController.fetchAll(persistanceController)
+        
+        let result = await weatherService.updateWeather(city: city)
+        switch result {
+        case .failure(let error): return .failure(error)
+            //if there is an entry in db with the same city name, return it
+            //if there is no entry in db, return an error
+        case .success(let model):
+            var saveMe = WeatherDataModel.createDataModel(model: model)
+            try? await persistanceController.saveWeather(&saveMe)
+            return .success(WeatherUIModel.from(model: model))
+            //save to db, if there is an entry, rewrite it
         }
     }
 }

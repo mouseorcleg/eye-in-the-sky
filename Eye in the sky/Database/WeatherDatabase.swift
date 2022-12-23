@@ -43,6 +43,7 @@ struct WeatherDatabase {
                 t.column("temp", .double)
                 t.column("humidity", .integer)
                 t.column("wind", .double)
+                t.column("timestamp", .integer)
             }
         }
         
@@ -75,6 +76,7 @@ extension WeatherDatabase {
         if weatherDatabase.name.isEmpty {
             throw ValidationError.missingName
         }
+        print("Saved me!")
         weatherDatabase = try await dbWriter.write { [weatherDatabase] db in
             try weatherDatabase.saved(db)
         }
