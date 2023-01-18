@@ -10,11 +10,11 @@ import Foundation
 // Data needed by view, when it updates, view updates as well
 extension CellListView {
     @MainActor class WeatherViewModel: ObservableObject {
-        @Published var title: String = "-"
-        @Published var temp: String = "-"
-        @Published var description: String = "-"
-        @Published var humidity: String = "-"
-        @Published var wind: String = "-"
+        @Published var title: String = "London"
+        @Published var temp: String = "-2C"
+        @Published var description: String = "Cold. It's Cold"
+        @Published var humidity: String = "Hymidity: 80%"
+        @Published var wind: String = "Wind: 20 m/h"
         @Published var icon: String = ""
         //add stale: Bool
         //if stale show in gray

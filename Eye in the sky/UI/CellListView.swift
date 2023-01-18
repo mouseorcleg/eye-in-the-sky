@@ -14,36 +14,56 @@ struct CellListView: View {
     
     var body: some View {
         
-        HStack {
-            VStack (alignment: .center){
+        let iconURL = URL(string: "https://openweathermap.org/img/wn/\(viewModel.icon).png")
+        
+        VStack {
+            HStack {
                 Text(viewModel.title)
                     .font(.title)
                     .fontDesign(.monospaced)
                     .fontWeight(.semibold)
-                AsyncImage(url: URL(string: "https://openweathermap.org/img/wn/\(viewModel.icon).png"), scale: 0.5)
-                    .scaledToFit()
+                    .padding(.horizontal)
+                    .padding(.horizontal)
+                Spacer()
             }
-            VStack (alignment: .leading) {
-                Text(viewModel.temp)
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .fontDesign(.monospaced)
-                Text(viewModel.description)
-                    .font(.title2)
-                    .fontDesign(.monospaced)
-                Text(viewModel.humidity)
-                    .fontDesign(.monospaced)
-                Text(viewModel.wind)
-                    .fontDesign(.monospaced)
+            HStack {
+                VStack (alignment: .center){
+                    AsyncImage(url: iconURL) { returnedIcon in
+                        returnedIcon
+                            .resizable()
+                            .scaledToFit()
+                            .frame(maxWidth: 100, maxHeight: 100)
+                            .padding(.horizontal)
+                    } placeholder: {
+                        ProgressView()
+                            .frame(maxWidth: 100, maxHeight: 100)
+                            .padding(.horizontal)
+                    }
+                }
+                VStack (alignment: .leading) {
+                    HStack {
+                        Spacer()
+                        Text(viewModel.temp)
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .fontDesign(.monospaced)
+                        Spacer()
+                    }
+                    Text(viewModel.description)
+                        .font(.title2)
+                        .fontDesign(.monospaced)
+                    Text(viewModel.humidity)
+                        .fontDesign(.monospaced)
+                    Text(viewModel.wind)
+                        .fontDesign(.monospaced)
+                }
+                .padding(.trailing)
             }
-            .padding(14)
-            
         }.onAppear(perform: {
             Task {
                 await viewModel.fetchWeatherUI()
             }
         })
-        
     }
 }
 
@@ -53,3 +73,5 @@ struct CellListView_Previews: PreviewProvider {
         CellListView(viewModel: CellListView.WeatherViewModel(city: "London", repo: Eye_in_the_skyApp.weatherRepo))
     }
 }
+
+
