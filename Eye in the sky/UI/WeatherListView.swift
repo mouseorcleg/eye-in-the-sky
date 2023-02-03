@@ -14,18 +14,14 @@ struct WeatherListView: View {
     @EnvironmentObject var repo: WeatherRepository
     
     var body: some View {
-        NavigationView {
-            List(0..<10) { item in
-                CellListView(viewModel: CellListView.WeatherViewModel(city: WeatherRepository.cityList.randomElement() ?? "London", repo: Eye_in_the_skyApp.weatherRepo))
-                           }
+        List(0..<10) { item in
+            CellListView(viewModel: CellListView.WeatherViewModel(city: WeatherRepository.cityList.randomElement() ?? "London", repo: Eye_in_the_skyApp.weatherRepo))
         }
-        
+        .listStyle(.grouped)
         .navigationTitle("Whether the weather")
-        .navigationBarTitleDisplayMode(.automatic)
     }
-    
-    
 }
+    
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
