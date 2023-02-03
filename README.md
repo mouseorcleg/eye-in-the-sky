@@ -1,5 +1,9 @@
 # Eye in the sky
 
+
+‼️ Project closed for now and would not be updated. Check [my GitHub](https://github.com/mouseorcleg) for the new version of the weather app.
+
+
 > I am the eye in the sky  
 > Looking at you  
 
