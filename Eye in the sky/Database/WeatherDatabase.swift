@@ -82,14 +82,51 @@ extension WeatherDatabase {
         }
     }
     
-}
-
-// MARK: - Database Access: Reads
-
-extension WeatherDatabase {
-    /// Provides a read-only access to the database
-    var databaseReader: DatabaseReader {
-        dbWriter
+    func fetchAllData() async throws {
+        
+        try await dbWriter.read { db in
+            let rows = try Row.fetchAll(db, sql: "SELECT * FROM citiesWeather")
+            print(rows)
+        }
+    }
+    
+    func updateWeather(_ city: String, updModel: WeatherDataModel) async throws {
+        try await dbWriter.write { db in
+            try db.execute(
+                sql: """
+                UPDATE citiesWeather
+                SET
+                    description :description,
+                    icon :icon,
+                    temp :temp,
+                    humidity :humidity,
+                    wind :wind,
+                    timestamp :timestamp
+                
+                WHERE name = :name;
+                """,
+                arguments: ["name": "\(city)",
+                            "description": "\(updModel.description)",
+                            "icon": "\(updModel.icon)",
+                            "temp": "\(updModel.temp)",
+                            "humidity": "\(updModel.humidity)",
+                            "wind": "\(updModel.wind)",
+                            "timestamp": "\(updModel.timestamp)"
+                           ])
+            }
+    }
+    
+    func timestampByCityName(_ city: String) async throws {
+        try await dbWriter.read({ db in
+            try db.execute(sql: "SELECT timestamp FROM citiesWeather WHERE name = :name; ", arguments: ["name": "\(city)"])
+        })
     }
 }
-
+    //MARK: - Database Access: Reads
+    
+    extension WeatherDatabase {
+        /// Provides a read-only access to the database
+        var databaseReader: DatabaseReader {
+            dbWriter
+        }
+    }
